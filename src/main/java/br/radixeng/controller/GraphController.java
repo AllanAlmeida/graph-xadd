@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/graph")
+@SuppressWarnings("rawtypes")
 public class GraphController {
     
-    @GetMapping("/{id}")
+	@GetMapping("/{id}")
     public ResponseEntity getGraph(@PathVariable int id){
         return ResponseEntity.ok().build();
     }

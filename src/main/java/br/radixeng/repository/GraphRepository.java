@@ -1,11 +1,14 @@
 package br.radixeng.repository;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+import br.radixeng.entities.Graph;
 
 /**
  *
  */
-@Repository
-public interface GraphRepository {
+@RepositoryRestResource(collectionResourceRel = "graph", path = "graph")
+public interface GraphRepository extends CrudRepository<Graph, Long>{
     
 }

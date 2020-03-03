@@ -31,13 +31,11 @@ public class GraphControllerTest {
 	public void setUp() {
 		mockMvc = MockMvcBuilders.standaloneSetup(graphController).build();
     }
-    
-    
+        
     @Test
 	public void testGraphNotFound() throws Exception {
         String inesistentGraphId = "123";
-		mockMvc.perform(get(String.format("/graph/%s",inesistentGraphId)))
-               .andExpect(status().isNotFound());
+		mockMvc.perform(get(String.format("/graph/%s",inesistentGraphId))).andExpect(status().isNotFound());
 	}
 
 }
