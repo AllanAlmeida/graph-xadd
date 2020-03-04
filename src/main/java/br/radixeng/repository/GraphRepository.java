@@ -1,6 +1,6 @@
 package br.radixeng.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import br.radixeng.entities.Graph;
@@ -8,7 +8,5 @@ import br.radixeng.entities.Graph;
 /**
  *
  */
-@RepositoryRestResource(collectionResourceRel = "graph", path = "graph")
-public interface GraphRepository extends CrudRepository<Graph, Long>{
-    
-}
+@RepositoryRestResource
+public interface GraphRepository extends JpaRepository<Graph, Long>{}

@@ -1,23 +1,50 @@
 package br.radixeng.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.radixeng.entities.Graph;
+import br.radixeng.service.GraphServiceImpl;
 
 /**
  *
  */
-@Controller
+@RestController
 @RequestMapping("/graph")
-@SuppressWarnings("rawtypes")
 public class GraphController {
     
-	@GetMapping("/{id}")
-    public ResponseEntity getGraph(@PathVariable int id){
-        return ResponseEntity.ok().build();
+	@Autowired
+	private GraphServiceImpl graphService;
+	
+	public GraphController(GraphServiceImpl graphService) {
+	       this.graphService = graphService;
+	}
+		
+	@RequestMapping(value = "/graph", method = RequestMethod.GET)
+    public ResponseEntity<List<Graph>> listAllUsers() {
+        List<Graph> graphs = graphService.findAllGraphs();
+        return new ResponseEntity<List<Graph>>(graphs, HttpStatus.OK);
     }
-
-    
+	
+	@GetMapping("/{id}")
+    public ResponseEntity<Graph> getGraph(@PathVariable long id){
+		Graph graph = this.graphService.findById(id);
+		return new ResponseEntity<Graph>(graph, HttpStatus.OK);
+    }
+	
+	@RequestMapping(value = "/graph", method =  RequestMethod.POST)
+    public void Post(@Valid @RequestBody Graph graph){
+        graphService.saveGraph(graph);
+    }
 }
