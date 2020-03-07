@@ -1,11 +1,12 @@
 package br.radixeng.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,23 +27,30 @@ public class Graph implements Serializable {
 	@Column(name = "graph_id")
 	private long id;
 	
-	@OneToMany(mappedBy = "graph", targetEntity = Route.class, fetch = FetchType.LAZY)
-	private List<Route> routes;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Route> data = new ArrayList<>();
 
 	public Graph(){
 		//default construtor
 	}
 	
 	public Graph(List<Route> listaRotas) {
-		this.routes = listaRotas;
+		this.data = listaRotas;
 	}
 
-	public List<Route> getRotas() {
-		return routes;
+	public long getId() {
+		return id;
 	}
 
-	public void setListaRotas(List<Route> listaRotas) {
-		this.routes = listaRotas;
+	public void setId(long id) {
+		this.id = id;
 	}
-	
+
+	public List<Route> getData() {
+		return data;
+	}
+
+	public void setData(List<Route> data) {
+		this.data = data;
+	}
 }

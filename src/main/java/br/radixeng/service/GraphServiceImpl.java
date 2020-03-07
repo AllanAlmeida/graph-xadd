@@ -21,7 +21,7 @@ public class GraphServiceImpl implements IGraphService{
 	
 	@Override
 	public List<Graph> findAllGraphs() {
-		return graphRepository.findAll();
+		return (List<Graph>) graphRepository.findAll();
 	}
 	
 	@Override

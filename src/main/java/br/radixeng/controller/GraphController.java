@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +20,6 @@ import br.radixeng.service.GraphServiceImpl;
  *
  */
 @RestController
-@RequestMapping("/graph")
 public class GraphController {
     
 	@Autowired
@@ -37,7 +35,7 @@ public class GraphController {
         return new ResponseEntity<List<Graph>>(graphs, HttpStatus.OK);
     }
 	
-	@GetMapping("/{id}")
+	@RequestMapping(value = "/graph/{id}", method = RequestMethod.GET)
     public ResponseEntity<Graph> getGraph(@PathVariable long id){
 		Graph graph = this.graphService.findById(id);
 		return new ResponseEntity<Graph>(graph, HttpStatus.OK);

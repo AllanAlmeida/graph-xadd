@@ -6,12 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "route")
+@Table(name = "data")
 public class Route implements Serializable {
 	
 	/**
@@ -29,19 +27,14 @@ public class Route implements Serializable {
 	
 	private Integer distance;
 	
-	@ManyToOne
-	@JoinColumn (name="graph_id")
-	private Graph graph;
-	
 	public Route(){
 		//default construtor
 	}
 	
-	public Route(String source, String target, Integer distance, Graph graph){
+	public Route(String source, String target, Integer distance){
 		this.source = source;
 		this.target = target;
 		this.distance = distance;
-		this.graph = graph;
 	}
 	
 	public String getSource() {
@@ -66,13 +59,5 @@ public class Route implements Serializable {
 	
 	public void setDistance(Integer distance) {
 		this.distance = distance;
-	}
-
-	public Graph getGraph() {
-		return graph;
-	}
-
-	public void setGraph(Graph graph) {
-		this.graph = graph;
 	}
 }
