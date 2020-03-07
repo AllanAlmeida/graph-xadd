@@ -30,19 +30,20 @@ public class GraphController {
 	}
 		
 	@RequestMapping(value = "/graph", method = RequestMethod.GET)
-    public ResponseEntity<List<Graph>> listAllUsers() {
+    public ResponseEntity<List<Graph>> listAllGraphs() {
         List<Graph> graphs = graphService.findAllGraphs();
         return new ResponseEntity<List<Graph>>(graphs, HttpStatus.OK);
     }
 	
 	@RequestMapping(value = "/graph/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Graph> getGraph(@PathVariable long id){
+    public ResponseEntity<Graph> getGraphById(@PathVariable long id){
 		Graph graph = this.graphService.findById(id);
 		return new ResponseEntity<Graph>(graph, HttpStatus.OK);
     }
 	
 	@RequestMapping(value = "/graph", method =  RequestMethod.POST)
-    public void Post(@Valid @RequestBody Graph graph){
+    public ResponseEntity<Graph> saveGraph(@Valid @RequestBody Graph graph){
         graphService.saveGraph(graph);
+        return new ResponseEntity<Graph>(graph, HttpStatus.OK);
     }
 }
