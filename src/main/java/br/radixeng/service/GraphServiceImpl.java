@@ -13,7 +13,11 @@ public class GraphServiceImpl implements IGraphService{
 	 
 	@Autowired
 	private GraphRepository graphRepository;
-
+	
+	public GraphServiceImpl() {
+		//default constructor
+	}
+	
 	@Override
 	public Graph findById(Long id) {
 		return graphRepository.findOne(id);

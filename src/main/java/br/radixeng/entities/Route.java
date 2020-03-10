@@ -8,8 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
 @Table(name = "data")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Route implements Serializable {
 	
 	/**
@@ -31,12 +34,12 @@ public class Route implements Serializable {
 		//default construtor
 	}
 	
-	public Route(String source, String target, Integer distance){
+	public Route(String source, String target, Integer distance) {
 		this.source = source;
 		this.target = target;
 		this.distance = distance;
 	}
-	
+
 	public String getSource() {
 		return source;
 	}
