@@ -6,12 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import br.radixeng.dto.DistanceDTO;
 import br.radixeng.dto.RouteDTO;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public interface IRouteService {
 	
 	Map<String, LinkedHashSet<String>> map = new HashMap();
+	
+	DistanceDTO findMinimalPath(Long graphId, String town1, String town2);
 	
 	RouteServiceImpl findAllRoutes(Long graphId, String town1, String town2);
 	
